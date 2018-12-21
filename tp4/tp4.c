@@ -21,36 +21,31 @@ char * mirroir(const char *s)
 	return resultat;
 }
 
-char* saisie ()
-{
- 	char saisie = " ";
- 	char* chaine = malloc(sizeof(char));
- 	if (resultat == NULL)
-		printf("Erreur malloc\n");
+char* saisie(){
+	char saisie = 'a';
+	char* chaine = malloc(sizeof(char));
+	int i = 0;
 
- 	int i = 0;
+	printf("Saisir un mot : ");
 
- 	printf("Saisissez un mot : ");
-
- 	while(!isspace((int)saisie))
- 	{
- 		scanf("%c", &saisie);
+	while(!isspace((int)saisie)){
+		scanf("%c", &saisie);
 		printf("carac entré : %c\n", saisie);
 		i++;
 
-		if (strlen(chaine) > i)
-			chaine = realloc(sizeof(char) * i);
-
-		if(!isspace((int)saisie))
+		if(strlen(chaine) > compteur){
+			chaine = realloc(chaine, sizeof(char)*i);
+		}
+		
+		if(!isspace((int)saisie)){
 			chaine[i-1] = saisie;
-
-		printf("Taille : %d\n", strlen(chaine));
-		return chaine;
- 	}
- }
+		}
+	}
+	printf("Taille : %d\n", strlen(chaine));
+	return chaine;
+}
 
  int main(int argC, char** argV){
-	int i;
 	char* chaine;
 	const char* c = argV[0];
 	
