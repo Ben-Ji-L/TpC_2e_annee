@@ -1,62 +1,58 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 #include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-char * mirroir(const char *s)
-{
-	int taille = strlen(s);
-	char* resultat = malloc(sizeof(char) * taille + 1);
-	if (resultat == NULL)
-		printf("Erreur malloc\n");
+#include "tp4.h"
 
-	int i;
-	int j = 0;
+char *miroir(const char *s) {
+  int taille = strlen(s);
+  char *resultat = calloc(taille + 1, sizeof(char));
+  if (resultat == NULL) {
+    return resultat;
+  }
 
-	for(i = (taille-1); i >= 0; i--){
-		resultat[j] = s[i];
-		j++;
-	}
-	resultat[taille] = '\0';
-	return resultat;
+  int i;
+  for (i = taille - 1; i >= 0; i--) {
+    *resultat = s[i];
+    resultat++;
+  }
+  *resultat = '\0';
+
+  resultat = resultat - taille;
+  return resultat;
 }
 
-char* saisie(){
-	char saisie = 'a';
-	char* chaine = malloc(sizeof(char));
-	int i = 0;
+char* saisie() {
+  int nb = 50;
+  char* resultat = calloc(nb, sizeof(char));
+  if (resultat == NULL) {
+    return resultat;
+  }
 
-	printf("Saisir un mot : ");
+  int nbChar = 0;
+  char carac = getchar();
+  while (!isspace(carac)) {
+    if (nbChar > nb-1) {
+      nb += 50;
+      resultat = realloc(resultat, nb * sizeof(char));
+      if (resultat == NULL) {
+        return resultat;
+      }
+    }
 
-	while(!isspace((int)saisie)){
-		scanf("%c", &saisie);
-		printf("carac entré : %c\n", saisie);
-		i++;
+    resultat[nbChar] = carac;
+    nbChar++;
+    carac = getchar();
+  }
 
-		if(strlen(chaine) > compteur){
-			chaine = realloc(chaine, sizeof(char)*i);
-		}
-		
-		if(!isspace((int)saisie)){
-			chaine[i-1] = saisie;
-		}
-	}
-	printf("Taille : %d\n", strlen(chaine));
-	return chaine;
+  resultat[nbChar] = '\0';
+  return resultat;
 }
 
- int main(int argC, char** argV){
-	char* chaine;
-	const char* c = argV[0];
-	
-	if(argC == 1){
-		printf("Mauvaise utilisation.\n");
-		return 0;
-	}
+/* int main(void) {
+  printf("%s\n", miroir("Bonjour"));
+  printf("%s\n", saisie());
 
-	if(strcmp(c, "-m" == 0)){
-		printf("Pouet");
-	}
-
-	return 1;
-}
+  return 0;
+}*/
