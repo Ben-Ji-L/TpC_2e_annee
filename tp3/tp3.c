@@ -31,6 +31,7 @@ int main()
 	return 0;
 }
 
+// Calcule la taille de la chaine sans le caractere null final.
 int mon_strlen(char s[])
 {
 	int i = 0;
@@ -62,6 +63,7 @@ int mon_strcmp(const char * s1, const char * s2)
 	return *s1 - *s2;
 }
 
+// Compare les n 1e octets de la chaine pointée par s1 avec la chaine pointée par s2
 int mon_strncmp(const char * s1, const char * s2, int n)
 {
 	int i = 0;
@@ -74,6 +76,7 @@ int mon_strncmp(const char * s1, const char * s2, int n)
 	return *s1 - *s2;
 }
 
+// Ajoute la chaine pointée par s1 à la fin de la chaine pointée par s2
 char *mon_strcat(char *s1, const char *s2)
 {
 	int taille = mon_strlen(s1);
@@ -89,6 +92,7 @@ char *mon_strcat(char *s1, const char *s2)
   	return o;
 }
 
+// cherche un caractère dans une chaîne et renvoie un pointeur sur le caractère, en cherchant depuis le début 
 char *mon_strchr(char *s, int c)
 {
 	while (*s != c && *s != '\0') {
@@ -101,6 +105,7 @@ char *mon_strchr(char *s, int c)
   	return s;
 }
 
+// trouve la première occurrence de la chaîne needle dans la chaîne haystack
 char *mon_strstr(char *haystack, char *needle)
 {
 	char *debut = needle;
