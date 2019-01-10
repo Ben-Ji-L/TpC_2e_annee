@@ -53,6 +53,7 @@ int mon_strlen2(const char *s)
     return i;
 }
 
+// compare deux chaînes lexicalement 
 int mon_strcmp(const char * s1, const char * s2)
 {
 	while (*s1 == *s2 && *s1 && *s2) {
